@@ -7,7 +7,56 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     
     <script>
-        
+        function playerWon(player, computer) {
+            if ((player == "Rock" && computer == "Scissors") 
+                || (player == "Scissors" && computer == "Paper") 
+                || (player == "Paper" && computer == "Rock")) {
+                    return true;
+                }
+                else if ((computer == "Rock" && player == "Scissors") 
+                || (computer == "Scissors" && player == "Paper") 
+                || (computer == "Paper" && player == "Rock")) {
+                    return false;
+                }
+        }
+                
+                
+        function computerPlay() {
+            let plays = ["Rock", "Paper", "Scissors"];
+            let randomNum = Math.random() * 3;
+            let roundedNum = Math.floor(randomNum);
+            let move = plays[roundedNum];
+            return move;
+        }
+        function playerPlay() {
+            let playerInput = prompt("Enter your move");
+            return capitalize(playerInput);
+        }
+        function playRound(playerSelection, computerSelection) {
+            computerSelection = computerPlay();
+            let playerInput = prompt("Enter your move");
+            playerSelection = capitalize(playerInput);
+            if (playerWon(playerSelection, computerSelection)) {
+                console.log("YOU WIN. " + playerSelection + " beats " + computerSelection + "!" )
+            }
+            else if (playerWon(playerSelection, computerSelection) == false ) {
+                console.log("YOU LOSE. " + computerSelection + " beats " + playerSelection + "!" )
+            }
+            else {
+                console.log("DRAW " + playerSelection + " vs " + computerSelection);
+            }
+        }
+        function capitalize(str) {
+            return str[0].toUpperCase() + str.slice(1).toLowerCase();
+        }
+        function game() {
+            playRound();
+            playRound();
+            playRound();
+            playRound();
+            playRound();
+            
+        }
     </script>
 </head>
 <body>
